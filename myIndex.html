@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/index.css">
+    <style>
+
+    </style>
+</head>
+<!--
+TODO: 节流的使用
+TODO: 上线准备
+-->
+
+<body>
+    <div class="content">
+        <canvas class="logo" width="200" height="200">
+
+        </canvas>
+        <div class="text-cont">
+            <h1 class="title" onselectstart='return false'>HEY!MAN</h1>
+            <p class="slogon" onselectstart='return false'>Words that can make you or break you</p>
+        </div>
+        <div class="navigation">
+            <a id="j_ck" href="#">我的作品链接</a>
+        </div>
+        <div class="link">
+            <ul class="link-list">
+                <li class="link-item n1"><a data-title="" href="javascript:;">Work</a></li>
+                <li class="link-item"><a data-title="" class="" href="javascript:;">WeChat</a></li>
+                <li class="link-item"><a data-title="" href="javascript:;">Blog</a></li>
+                <li class="link-item"><a data-title="" href="https://github.com/wangda999?tab=repositories">GitHub</a></li>
+                <li class="link-item"><a data-title="276442562@qq.com" href="javascript:;">Email</a></li>
+            </ul>
+
+        </div>
+        <div class="back-box">
+            <div data-src="url('https://source.unsplash.com/random/1536x723');" class="backgroud">
+
+            </div>
+        </div>
+    </div>
+    <script>
+        // 画logo
+        function CreatLogo(ctx) {
+            this.obj = document.querySelector('canvas');
+            this.ctx = ctx || this.obj.getContext('2d');
+            this.width = this.ctx.canvas.width;
+            this.height = this.ctx.canvas.height;
+            this.origin = {
+                x: this.width / 2,
+                y: this.width / 2
+            };
+            
+            this.objA = document.getElementById('j_ck');
+        }
+        CreatLogo.prototype.init = function () {
+            this.drawZ();
+        }
+        // 画Z
+        CreatLogo.prototype.drawZ = function () {
+
+            // 这种有问题
+            //            this.ctx.shadowColor = "#fff";
+            //            this.ctx.shadowBlur = 0;
+            //            this.ctx.shadowOffsetY =0;
+            //            this.ctx.shadowOffsetX =0;
+            //            this.ctx.clearRect(0,0,this.width,this.height);
+            this.clearCanvas();
+            // 分三段画
+             window.colo = this.randomColor();
+            // 顺便添加更换链接功能
+            this.ctx.fillStyle = colo;
+            
+            // z
+            this.ctx.setTransform(1, 0, .6, 1, 0, 0);
+            this.ctx.fillRect(10, 0, 138, 35);
+
+            this.ctx.setTransform(1, 0, .8, 1, -56, 59);
+            this.ctx.fillRect(0, 80, 145, 33);
+
+            this.ctx.setTransform(1, 1.4, -1, 1, 0, -210);
+            this.ctx.shadowColor = "#000";
+            this.ctx.shadowOffsetY = 0;
+            this.ctx.shadowBlur = 10;
+            this.ctx.fillRect(150, 0, 22, 140);
+        }
+        CreatLogo.prototype.clearCanvas = function () {
+            this.obj.width = this.width;
+        }
+        // 随机颜色
+        CreatLogo.prototype.randomColor = function () {
+            var r = Math.floor(Math.random() * 256);
+            var g = Math.floor(Math.random() * 256);
+            var b = Math.floor(Math.random() * 256);
+            return 'rgb(' + r + ',' + g + ',' + b + ')';
+        }
+        // 改变内容
+//        CreatLogo.prototype.creatAlink = function (color, idex) {
+//            // 不要随机做法了
+////            var random = Math.floor(Math.random() * this.alink.length);
+//            
+//        }
+
+
+        // 数据
+        var alink = [
+                {
+                    href: '#1',
+                    title: '王四'
+                },
+                {
+                    href: '#2',
+                    title: '作品名称2'
+                },
+                {
+                    href: '#3',
+                    title: '作品名称3'
+                },
+                {
+                    href: '#4',
+                    title: '作品名称4'
+                }
+            ];
+        window.onload = function () {
+            
+            // logo部分
+            var z = new CreatLogo();
+            var logo = document.querySelector('.logo');
+            z.init();
+            document.querySelector('.content').classList.add('now');
+            var img = new Image();
+            var index = 0;
+            var obj = document.querySelector('.navigation a');
+            obj.style.color = colo;
+            logo.addEventListener('click', function () {
+                z.init();
+                changeInner(alink,index,obj);
+                index++;
+                if(index==alink.length) index = 0;
+            }, false)
+            img.onload = function () {
+                var backImg = document.querySelector('.backgroud');
+                backImg.style.backgroundImage = "url('" + img.src + "')";
+                backImg.classList.add('load');
+
+            };
+            img.src = 'https://source.unsplash.com/random/1536x723';
+
+        }
+        function changeInner (data, idex ,obj){
+            obj.style.color = colo;
+            obj.href = data[idex].href;
+            obj.innerHTML = data[idex].title;
+            console.log(idex);
+        }
+    </script>
+</body>
+
+</html>
