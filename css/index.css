@@ -1,0 +1,244 @@
+/*        引入外部字体*/
+
+@font-face {
+    font-family: 'Againte';
+    src: url('/fonts/Againts.otf');
+    /*
+        src: url('fonts/hanshand-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/hanshand-webfont.woff') format('woff'),
+         url('fonts/hanshand-webfont.ttf') format('truetype'),
+         url('fonts/hanshand-webfont.svg#webfont34M5alKg') format('svg');
+*/
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/**
+        *
+        *    reset.css
+        *
+        **/
+
+body,
+ul,
+ol,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+input,
+select,
+textarea,
+form {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font: 14px/1.5 "sans-serif";
+    background: #000;
+    color: #fff;
+}
+
+img {
+    border: none;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+input,
+select,
+textarea {
+    outline: none;
+    border: none;
+    background: none;
+}
+
+textarea {
+    resize: none;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+a:hover {
+    text-shadow:2px 2px 6px #666; 
+}
+
+
+/**
+        *
+        *    page.css
+        *
+        **/
+
+.content {
+    text-align: center;
+    min-width: 300px;
+    width: 472px;
+    margin: 30px auto 0;
+    transform-origin: center bottom;
+    overflow: hidden;
+}
+
+.content .logo {
+    display: block;
+    overflow: hidden;
+    margin: 50px auto 0;
+    opacity: 0;
+}
+
+.content .text-cont {
+    font-family: "Againte";
+    opacity: 0;
+}
+
+.content .title {
+    margin-top: 50px;
+    font-size: 3em;
+    letter-spacing: .3em;
+}
+
+.content .slogon {
+    font-size: 1.5em;
+    letter-spacing: .2em;
+}
+
+
+/*我的作品导航*/
+
+.content .navigation {
+    overflow: hidden;
+    padding: 40px ;
+    font-size: 26px;
+    font-family: 'Againte';
+    opacity: 0;
+}
+
+
+/*链接部分*/
+
+.content .link {
+    opacity: 0;
+}
+
+.content .link-list {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.content .link li {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.content .link .link-list li:nth-child(1) {
+    margin-left: -1rem;
+}
+
+.content .link a {
+    color: #99e9f2;
+    transition: backgroud 1s;
+}
+
+.content .link a::before {
+    content: '·';
+    margin: 0.5rem;
+    color: #aaa;
+}
+
+
+/*设置背景色*/
+
+.content .back-box {
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.content .backgroud {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -3;
+    opacity: 0;
+    transform-origin: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.content .backgroud:after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    content: "";
+    background: linear-gradient(transparent, rgba(0, 0, 0, .4) 60%, rgba(0, 0, 0, .9)), 0/1px;
+}
+
+
+/*                url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"><path d="M0 0 h1v1H0zM1 1h1v1H1z"/></svg>')*/
+
+
+/*        动画*/
+
+.content.now .logo {
+    animation: fadeIn 1s linear 0s forwards;
+}
+
+.content.now .text-cont {
+    animation: fadeIn 1s linear .5s forwards;
+}
+
+.content.now .navigation {
+    animation: fadeIn 1s linear 1s forwards;
+}
+
+.content.now .link {
+    animation: fadeIn 1s linear 1.5s forwards;
+}
+
+.content.now .backgroud.load {
+    animation: backIn 2s linear .5s forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes backIn {
+    0% {
+        opacity: 0;
+        filter: blur(8px);
+        transform: scale(1.2)
+    }
+    to {
+        opacity: 1;
+        filter: blur(0);
+        transform: scale(1);
+    }
+}
